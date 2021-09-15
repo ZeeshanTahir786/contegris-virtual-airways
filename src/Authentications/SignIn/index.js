@@ -112,16 +112,18 @@ const SignIn = () => {
                                     autoComplete="current-password"
                                     variant="outlined"
                                 />
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    color="primary"
-                                    variant="contained"
-                                    style={{ marginBottom: "10px", marginTop: "20px" }}
-                                    sx={{ mt: 3, mb: 2 }}
-                                >
-                                    Sign In
-                                </Button>
+                                <RouteLink to="/home" style={{ textDecoration: "none" }} >
+                                    <Button
+                                        type="submit"
+                                        fullWidth
+                                        color="primary"
+                                        variant="contained"
+                                        style={{ marginBottom: "10px", marginTop: "20px" }}
+                                        sx={{ mt: 3, mb: 2 }}
+                                    >
+                                        Sign In
+                                    </Button>
+                                </RouteLink>
                                 <Grid container>
                                     <Grid item xs>
                                         <Link href="#" variant="body2">

@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import SignIn from './Authentications/SignIn';
 import SignUp from './Authentications/SignUp';
 import {
@@ -8,6 +7,8 @@ import {
   Route,
 } from "react-router-dom";
 import { AppBar, Button } from '@material-ui/core';
+import HomePage from './screens/HomePage';
+import FlightDetails from './components/FlightDetails';
 
 function App() {
   return (
@@ -19,10 +20,11 @@ function App() {
         <Route exact path="/signup" >
           <SignUp />
         </Route>
-        <Route exact path="/appbar" >
-          <AppBar position="static">
-            <Button color="inherit">Login</Button>
-          </AppBar>
+        <Route exact path="/home" >
+          <HomePage />
+        </Route>
+        <Route exact path="/flight" >
+          <FlightDetails />
         </Route>
       </Switch>
     </Router>
