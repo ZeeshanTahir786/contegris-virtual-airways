@@ -11,11 +11,10 @@ const useStyles = makeStyles((theme) => ({
         // flexGrow: 1,
         // display: "flex",
         // flexDirection: "row",
-    },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+        // maxWidth: "50px"
+        // gridAutoFlow: "row dense",
+        gridColumnStart: "1",
+        gridColumnEnd: "3",
     },
 }));
 
@@ -25,7 +24,7 @@ const FlightDetails = () => {
         <div>
             <Header />
             {/* <FlightBanner /> */}
-            <div style={{ display: "grid", gridAutoFlow: "column", paddingTop: "400px" }}>           {
+            <div style={{ display: "grid", gridTemplateColumns: "auto auto auto" }}>           {
                 flightDet.map((detail) => {
                     return (
                         <div className={classes.root}>
@@ -39,7 +38,7 @@ const FlightDetails = () => {
                 })
             }
             </div>
-            <div className={classes.root}>
+            {/* <div className={classes.root}>
                 <Grid container spacing={1}>
                     <Grid item xs={12} sm={6}>
                         <FlightDetail />
@@ -51,7 +50,7 @@ const FlightDetails = () => {
                         <FlightDetail />
                     </Grid>
                 </Grid>
-            </div>
+            </div> */}
         </div>
     )
 }

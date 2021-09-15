@@ -11,9 +11,10 @@ import Image1 from "../../../assests/images/AirPlane.jpg"
 
 const useStyles = makeStyles({
     root: {
-        minWidth: 275,
+        // minWidth: 275,
         width: "100%",
-        margin: 20
+        margin: 20,
+        flexDirection: "row"
     },
     media: {
         height: 180,

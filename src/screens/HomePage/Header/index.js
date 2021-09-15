@@ -185,8 +185,8 @@ function Header() {
                         />
 
                     </div>
-                    <Link to="/flight">
-                        <Typography style={{ textDecoration: "none" }} component="h6" style={{ marginTop: "0px" }} variant="h6"> Review Flights</Typography>
+                    <Link style={{ textDecoration: "none" }} to="/flight">
+                        <Typography component="h6" style={{ marginTop: "0px", color: "white" }} variant="h6"> Review Flights</Typography>
                     </Link>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
