@@ -16,6 +16,8 @@ import styled from "styled-components";
 import { makeStyles } from '@material-ui/core/styles';
 import { Link as RouteLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { signInAsGuest, signInReducer } from "../../redux/reducers/authReducer";
+import { useDispatch } from "react-redux";
 
 
 
@@ -28,6 +30,7 @@ const validationSchema = yup.object({
         .string('Enter your password')
         .min(8, 'Password should be of minimum 8 characters length')
         .required('Password is required'),
+    username: yup.string("Enter User Name").required("User Name is required"),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -65,17 +68,23 @@ const SignIn = () => {
     const [userEmail, setUserEmail] = React.useState("");
     const [userPassword, setUserPassword] = React.useState("");
     const [error, setError] = React.useState(true);
+    const dispatch = useDispatch();
+    const guestHandler = () => {
+        dispatch(signInAsGuest("Guest"));
+    }
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
+            username: ''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
             console.log("saasa", values)
             setUserEmail(values?.email)
             setUserPassword(values?.password)
-            email !== userEmail & password !== userPassword ? setError(false) : setError(true)
+            email !== userEmail & password !== userPassword ? setError(false) : setError(true);
+            dispatch(signInReducer(values))
 
             // alert(JSON.stringify(values, null, 2));
         },
@@ -90,6 +99,9 @@ const SignIn = () => {
             password: data.get("password"),
         });
     };
+    const signInHandler = () => {
+
+    }
     console.log("sajdkj", userEmail, userPassword);
     return (
         <>
@@ -124,6 +136,19 @@ const SignIn = () => {
                                     margin="normal"
                                     required
                                     fullWidth
+                                    id="username"
+                                    name="username"
+                                    label="User name"
+                                    value={formik.values.username}
+                                    onChange={formik.handleChange}
+                                    error={formik.touched.username && Boolean(formik.errors.username)}
+                                    helperText={formik.touched.username && formik.errors.username}
+                                    variant="outlined"
+                                />
+                                <TextField
+                                    margin="normal"
+                                    required
+                                    fullWidth
                                     id="email"
                                     name="email"
                                     label="Email"
@@ -151,12 +176,13 @@ const SignIn = () => {
                                     variant="outlined"
                                 />
                                 {
-                                    email === userEmail && password === userPassword ? <RouteLink to="/home" style={{ textDecoration: "none" }} >
+                                    email === userEmail && password === userPassword && userEmail !== "" ? <RouteLink to="/home" style={{ textDecoration: "none" }} >
                                         <Button
                                             type="submit"
                                             fullWidth
                                             color="primary"
                                             variant="contained"
+                                            onClick={signInHandler}
                                             style={{ marginBottom: "10px", marginTop: "20px" }}
                                             sx={{ mt: 3, mb: 2 }}
                                         >
@@ -174,6 +200,7 @@ const SignIn = () => {
                                             Sign In
                                         </Button>
                                 }
+
                                 {!error && <Typography>Incorrect email or password</Typography>}
                                 <Grid container>
                                     <Grid item xs>
@@ -191,7 +218,21 @@ const SignIn = () => {
                                 </Grid>
                             </Box>
                         </Box>
+                        <RouteLink to="/home" style={{ textDecoration: "none" }} >
+                            <Button
+                                // type="submit"
+                                fullWidth
+                                color="primary"
+                                onClick={guestHandler}
+                                // variant="contained"
+                                style={{ marginBottom: "5px", marginTop: "10px" }}
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Sign in as Guest
+                            </Button>
+                        </RouteLink>
                         <Copyright style={{ marginTop: "20px" }} sx={{ mt: 8, mb: 4 }} />
+
                     </Container>
                 </ThemeProvider>
             </Containers>

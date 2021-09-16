@@ -16,6 +16,8 @@ import Link from "@material-ui/core/Link";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Link as RouteLink } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
+import { signUpReducer } from '../../redux/reducers/authReducer';
 
 
 const validationSchema = yup.object({
@@ -64,6 +66,7 @@ const theme = createTheme();
 
 const SignUp = () => {
     const classes = useStyles();
+    const dispatch = useDispatch()
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -73,6 +76,7 @@ const SignUp = () => {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            dispatch(signUpReducer(values))
             alert(JSON.stringify(values, null, 2));
         },
     });

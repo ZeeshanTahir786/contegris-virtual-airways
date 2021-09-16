@@ -17,6 +17,9 @@ import Logo from "../../../assests/images/airblue-site.svg";
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { Link as RouteLink } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../redux/reducers/authReducer';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -86,8 +89,9 @@ function Header() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-    const username = useSelector((state) => state.auth.username)
-
+    const username = useSelector((state) => state.auth.username);
+    const userType = useSelector((state) => state.auth.userType);
+    const dispatch = useDispatch();
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -102,6 +106,7 @@ function Header() {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
+        dispatch(logout);
     };
 
     const handleMobileMenuOpen = (event) => {
@@ -120,7 +125,9 @@ function Header() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <RouteLink to="/" style={{ textDecoration: "none" }} >
+                <MenuItem onClick={handleMenuClose}>Logout Profile</MenuItem>
+            </RouteLink>
         </Menu>
     );
 
@@ -169,7 +176,9 @@ function Header() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <img src={Logo} alt="" width="150" height="40" style={{ margin: "10px" }} />
+                    <RouteLink to="/home">
+                        <img src={Logo} alt="" width="150" height="40" style={{ margin: "10px" }} />
+                    </RouteLink>
                     <Typography className={classes.title} variant="h6" noWrap style={{ marginTop: "12px", fontSize: 12 }}>
                         Contegris Pvt (LTD)
                     </Typography>
@@ -211,7 +220,7 @@ function Header() {
                             color="inherit"
                         >
                             <AccountCircle />
-                            <Typography>{username}</Typography>
+                            <Typography style={{ marginLeft: "5px" }}>{userType === "Guest" ? "Guest" : username}</Typography>
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>
