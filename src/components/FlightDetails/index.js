@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../../screens/HomePage/Header';
 import FlightBanner from '../FlightBanner';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import FlightDetail from './FlightDetail';
+import { Button } from '@material-ui/core';
+import Image1 from "../../assests/images/banner_toronto.png";
+import Image2 from "../../assests/images/sharjah_green.jpg";
+import Image3 from "../../assests/images/Madina.jpg";
+import Image4 from "../../assests/images/manchester-3.jpg";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -17,44 +23,45 @@ const useStyles = makeStyles((theme) => ({
         gridColumnEnd: "3",
     },
 }));
-
+const grid = { display: "grid", gridTemplateColumns: "auto auto auto", marginTop: "500px", marginRight: "20px" };
+const list = { display: "grid", marginTop: "500px", marginRight: "5px" };
 const FlightDetails = () => {
+    const [value, setValue] = useState("Grid");
     const classes = useStyles();
+    const listClickHandler = () => {
+        setValue("List")
+    }
+    const GridClickHandler = () => {
+        setValue("Grid")
+    }
     return (
         <div>
             <Header />
-            {/* <FlightBanner /> */}
-            <div style={{ display: "grid", gridTemplateColumns: "auto auto auto" }}>           {
-                flightDet.map((detail) => {
-                    return (
-                        <div className={classes.root}>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} sm={6}>
-                                    <FlightDetail />
-                                </Grid>
-                            </Grid>
-                        </div>
-                    )
-                })
-            }
+            <FlightBanner />
+            <div style={{ position: "absolute", bottom: "50px" }}>
+                <Button onClick={GridClickHandler} variant={value === "Grid" ? "contained" : ""} size="small" color="primary">Grid View</Button>
+                <Button size="small" variant={value === "List" ? "contained" : ""} onClick={listClickHandler} color="primary">List View</Button>
             </div>
-            {/* <div className={classes.root}>
-                <Grid container spacing={1}>
-                    <Grid item xs={12} sm={6}>
-                        <FlightDetail />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <FlightDetail />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <FlightDetail />
-                    </Grid>
-                </Grid>
-            </div> */}
+            <div style={value === "Grid" ? grid : list}>
+                {
+                    flightDet.map((detail) => {
+                        return (
+                            <FlightDetail
+                                key={detail.id}
+                                flightName={detail.flightName}
+                                bussinesSeats={detail.AvailableSeats.map(seats => seats.bussines)}
+                                economySeats={detail.AvailableSeats.map(seats => seats.economy)}
+                                stop={detail.Stop}
+                                airPlaneType={detail.airPlaneType}
+                                image={detail.image}
+                            />
+                        )
+                    })
+                }
+            </div>
         </div>
     )
 }
-
 export default FlightDetails;
 
 
@@ -64,95 +71,77 @@ const flightDet = [
         flightName: "Boinzy786",
         AvailableSeats: [
             {
-                bussines: [
-                    {
-                        id: 123,
-                        availSeats: 3
-                    }
-                ]
-            },
-            {
-                economy: [
-                    {
-                        id: 321,
-                        availSeats: 4
-                    }
-                ]
+                bussines: 6,
+                economy: 2,
             },
         ],
         airPlaneType: "Plane881",
-        Stops: "Lahore"
+        Stop: "Lahore",
+        image: Image1
     },
     {
         id: 2,
         flightName: "Yamal823",
         AvailableSeats: [
             {
-                bussines: [
-                    {
-                        id: 82,
-                        availSeats: 2
-                    }
-                ]
-            },
-            {
-                economy: [
-                    {
-                        id: 432,
-                        availSeats: 1
-                    }
-                ]
+                bussines: 1,
+                economy: 7,
             },
         ],
         airPlaneType: "Meta2way",
-        Stop: "Karachi"
+        Stop: "Karachi",
+        image: Image2
     },
     {
         id: 3,
         flightName: "Contegris999",
         AvailableSeats: [
             {
-                bussines: [
-                    {
-                        id: 32,
-                        availSeats: 5
-                    }
-                ]
-            },
-            {
-                economy: [
-                    {
-                        id: 990,
-                        availSeats: 4
-                    }
-                ]
+                bussines: 2,
+                economy: 6,
             },
         ],
         airPlaneType: "BetaSail78",
-        Stop: "Islababad"
+        Stop: "Islababad",
+        image: Image3
     },
     {
         id: 4,
         flightName: "Intellicon30",
         AvailableSeats: [
             {
-                bussines: [
-                    {
-                        id: 21,
-                        availSeats: 2
-                    }
-                ]
+                bussines: 9,
+                economy: 4,
             },
+        ],
+        airPlaneType: "SoriYab",
+        Stop: "Skardu",
+        image: Image3
+    },
+    {
+        id: 5,
+        flightName: "Intelitex789",
+        AvailableSeats: [
             {
-                economy: [
-                    {
-                        id: 90,
-                        availSeats: 3
-                    }
-                ]
+                bussines: 3,
+                economy: 6,
+            },
+        ],
+        airPlaneType: "denaish54",
+        Stop: "Safari",
+        image: Image4
+    },
+    {
+        id: 6,
+        flightName: "Intellicon30",
+        AvailableSeats: [
+            {
+                bussines: 3,
+                economy: 0,
             },
         ],
         airPlaneType: "Malik9T5",
-        Stop: "Skardu"
+        Stop: "Maladesh",
+        image: Image1,
     },
 ]

@@ -3,7 +3,8 @@ import Button from "@material-ui/core/Button";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
-import Checkbox from "@material-ui/core/Checkbox";
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { LockOutlined } from "@material-ui/icons";
 import Box from "@material-ui/core/Box";
@@ -16,6 +17,19 @@ import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Link as RouteLink } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 
+
+const validationSchema = yup.object({
+    email: yup
+        .string('Enter your email')
+        .email('Enter a valid email')
+        .required('Email is required'),
+    password: yup
+        .string('Enter your password')
+        .min(8, 'Password should be of minimum 8 characters length')
+        .required('Password is required'),
+    firstname: yup.string("Enter First Name").required("First Name is required"),
+    lastname: yup.string("Enter Last Name").required("Last Name is required"),
+});
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,6 +64,18 @@ const theme = createTheme();
 
 const SignUp = () => {
     const classes = useStyles();
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            firstname: '',
+            lastname: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -83,40 +109,52 @@ const SignUp = () => {
                         <Typography component="h1" variant="h5">
                             Sign up
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                        <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         autoComplete="fname"
-                                        name="firstName"
+                                        name="firstname"
                                         required
                                         fullWidth
                                         variant="outlined"
-                                        id="firstName"
+                                        id="firstname"
                                         label="First Name"
                                         autoFocus
+                                        value={formik.values.firstname}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.firstname && Boolean(formik.errors.firstname)}
+                                        helperText={formik.touched.firstname && formik.errors.firstname}
                                     />
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         required
                                         fullWidth
-                                        id="lastName"
+                                        id="lastname"
                                         label="Last Name"
                                         variant="outlined"
-                                        name="lastName"
+                                        name="lastname"
                                         autoComplete="lname"
+                                        value={formik.values.lastname}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.lastname && Boolean(formik.errors.lastname)}
+                                        helperText={formik.touched.lastname && formik.errors.lastname}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField
+                                        id="email"
+                                        name="email"
+                                        label="Email"
+                                        value={formik.values.email}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.email && Boolean(formik.errors.email)}
+                                        helperText={formik.touched.email && formik.errors.email}
                                         required
                                         fullWidth
-                                        id="email"
                                         variant="outlined"
-                                        label="Email Address"
                                         variant="outlined"
-                                        name="email"
                                         autoComplete="email"
                                     />
                                 </Grid>
@@ -124,12 +162,16 @@ const SignUp = () => {
                                     <TextField
                                         required
                                         fullWidth
+                                        variant="outlined"
+                                        autoComplete="new-password"
+                                        id="password"
                                         name="password"
                                         label="Password"
                                         type="password"
-                                        variant="outlined"
-                                        id="password"
-                                        autoComplete="new-password"
+                                        value={formik.values.password}
+                                        onChange={formik.handleChange}
+                                        error={formik.touched.password && Boolean(formik.errors.password)}
+                                        helperText={formik.touched.password && formik.errors.password}
                                     />
                                 </Grid>
                             </Grid>

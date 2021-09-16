@@ -16,6 +16,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Logo from "../../../assests/images/airblue-site.svg";
 import ShoppingCartRoundedIcon from '@material-ui/icons/ShoppingCartRounded';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -85,6 +86,7 @@ function Header() {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const username = useSelector((state) => state.auth.username)
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -167,8 +169,8 @@ function Header() {
         <div className={classes.grow}>
             <AppBar position="static">
                 <Toolbar>
-                    <img src={Logo} alt="" width="150" height="40" style={{ margin: "15px" }} />
-                    <Typography className={classes.title} variant="h6" noWrap style={{ marginTop: "8px" }}>
+                    <img src={Logo} alt="" width="150" height="40" style={{ margin: "10px" }} />
+                    <Typography className={classes.title} variant="h6" noWrap style={{ marginTop: "12px", fontSize: 12 }}>
                         Contegris Pvt (LTD)
                     </Typography>
                     <div className={classes.search}>
@@ -186,7 +188,7 @@ function Header() {
 
                     </div>
                     <Link style={{ textDecoration: "none" }} to="/flight">
-                        <Typography component="h6" style={{ marginTop: "0px", color: "white" }} variant="h6"> Review Flights</Typography>
+                        <Typography component="h6" style={{ marginTop: "0px", color: "white", fontSize: 15 }} variant="h6"> Review Flights</Typography>
                     </Link>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
@@ -209,6 +211,7 @@ function Header() {
                             color="inherit"
                         >
                             <AccountCircle />
+                            <Typography>{username}</Typography>
                         </IconButton>
                     </div>
                     <div className={classes.sectionMobile}>
