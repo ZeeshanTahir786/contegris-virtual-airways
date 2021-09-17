@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Link as RouteLink } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { logout } from '../../../redux/reducers/authReducer';
+import { logout, onSearch } from '../../../redux/reducers/authReducer';
 
 const useStyles = makeStyles((theme) => ({
     grow: {
@@ -171,7 +171,9 @@ function Header() {
             </MenuItem>
         </Menu>
     );
-
+    const onSearchChange = (event) => {
+        dispatch(onSearch(event.target.value))
+    }
     return (
         <div className={classes.grow}>
             <AppBar position="static">
@@ -193,6 +195,7 @@ function Header() {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'search' }}
+                            onChange={onSearchChange}
                         />
 
                     </div>

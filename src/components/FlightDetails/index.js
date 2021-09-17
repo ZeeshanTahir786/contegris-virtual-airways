@@ -10,6 +10,7 @@ import Image1 from "../../assests/images/banner_toronto.png";
 import Image2 from "../../assests/images/sharjah_green.jpg";
 import Image3 from "../../assests/images/Madina.jpg";
 import Image4 from "../../assests/images/manchester-3.jpg";
+import { useSelector } from 'react-redux';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,9 +23,21 @@ const useStyles = makeStyles((theme) => ({
         gridColumnStart: "1",
         gridColumnEnd: "3",
     },
+    grid: {
+        display: "grid",
+        gridTemplateColumns: "auto auto auto",
+        marginTop: "500px",
+        marginRight: "20px",
+    },
+    list: {
+        display: "grid",
+        marginTop: "500px",
+        marginRight: "70px",
+        marginLeft: "70px"
+    }
 }));
 const grid = { display: "grid", gridTemplateColumns: "auto auto auto", marginTop: "500px", marginRight: "20px" };
-const list = { display: "grid", marginTop: "500px" };
+const list = { display: "grid", marginTop: "500px", marginRight: "70px", marginLeft: "70px" };
 const FlightDetails = () => {
     const [value, setValue] = useState("Grid");
     const classes = useStyles();
@@ -34,6 +47,11 @@ const FlightDetails = () => {
     const GridClickHandler = () => {
         setValue("Grid")
     }
+    const searchVal = useSelector((state) => state.auth.search);
+    const filteredDetails = flightDet.filter(detail => {
+        return detail.flightName.toLowerCase().indexOf(searchVal.toLowerCase()) !== -1;
+    });
+    console.log("hjhkjsahj", filteredDetails)
     return (
         <div>
             <Header />
@@ -44,7 +62,7 @@ const FlightDetails = () => {
             </div>
             <div style={value === "Grid" ? grid : list}>
                 {
-                    flightDet.map((detail) => {
+                    filteredDetails.map((detail) => {
                         return (
                             <FlightDetail
                                 key={detail.id}

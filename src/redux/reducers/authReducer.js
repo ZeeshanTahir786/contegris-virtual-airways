@@ -5,6 +5,7 @@ const initialState = {
     password: "",
     username: "",
     userType: "",
+    search: "",
 }
 const authSlice = createSlice({
     name: "auth",
@@ -30,7 +31,10 @@ const authSlice = createSlice({
             state.password = "";
             state.userType = "";
         },
+        onSearch: (state, { payload }) => {
+            state.search = payload
+        }
     }
 })
-export const { signInReducer, signUpReducer, signInAsGuest, logout } = authSlice.actions;
+export const { signInReducer, signUpReducer, signInAsGuest, logout, onSearch } = authSlice.actions;
 export default authSlice.reducer;
