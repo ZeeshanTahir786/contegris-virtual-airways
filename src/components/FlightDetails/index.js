@@ -151,7 +151,46 @@ const flightDet = [
     },
     {
         id: 6,
-        flightName: "Intellicon30",
+        flightName: "MegaTower",
+        AvailableSeats: [
+            {
+                bussines: 3,
+                economy: 0,
+            },
+        ],
+        airPlaneType: "YogaTow98",
+        Stop: "Maladesh",
+        image: Image1,
+    },
+    {
+        id: 7,
+        flightName: "KamalI89",
+        AvailableSeats: [
+            {
+                bussines: 3,
+                economy: 0,
+            },
+        ],
+        airPlaneType: "Malik9T5",
+        Stop: "Maladesh",
+        image: Image1,
+    },
+    {
+        id: 8,
+        flightName: "RtX-675",
+        AvailableSeats: [
+            {
+                bussines: 3,
+                economy: 0,
+            },
+        ],
+        airPlaneType: "Malik9T5",
+        Stop: "Maladesh",
+        image: Image1,
+    },
+    {
+        id: 9,
+        flightName: "Utfy-309",
         AvailableSeats: [
             {
                 bussines: 3,
