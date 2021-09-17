@@ -12,6 +12,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import TextField from '@material-ui/core/TextField';
 import BookFlight from '../../../screens/BookFlight';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -46,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
 const FlightDetail = ({ flightName, airPlaneType, bussinesSeats, economySeats, stop, image }) => {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
+    const guest = useSelector((state) => state.auth.userType)
 
     const handleOpen = () => {
         setOpen(true);
@@ -81,9 +83,11 @@ const FlightDetail = ({ flightName, airPlaneType, bussinesSeats, economySeats, s
                 <Button size="small" color="primary">
                     Share
                 </Button>
-                <Button onClick={handleOpen} variant="contained" size="small" color="primary">
-                    Book Now
-                </Button>
+                {
+                    guest !== "Guest" ? <Button onClick={handleOpen} variant="contained" size="small" color="primary">
+                        Book Now
+                    </Button> : null
+                }
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"

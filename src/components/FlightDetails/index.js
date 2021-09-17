@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 const grid = { display: "grid", gridTemplateColumns: "auto auto auto", marginTop: "500px", marginRight: "20px" };
-const list = { display: "grid", marginTop: "500px", marginRight: "5px" };
+const list = { display: "grid", marginTop: "500px" };
 const FlightDetails = () => {
     const [value, setValue] = useState("Grid");
     const classes = useStyles();
@@ -39,8 +39,8 @@ const FlightDetails = () => {
             <Header />
             <FlightBanner />
             <div style={{ position: "absolute", bottom: "50px" }}>
-                <Button onClick={GridClickHandler} variant={value === "Grid" ? "contained" : ""} size="small" color="primary">Grid View</Button>
-                <Button size="small" variant={value === "List" ? "contained" : ""} onClick={listClickHandler} color="primary">List View</Button>
+                <Button onClick={GridClickHandler} variant={value === "Grid" ? "contained" : ""} size="medium" color="primary">Grid View</Button>
+                <Button size="small" variant={value === "List" ? "contained" : ""} onClick={listClickHandler} size="medium" color="primary">List View</Button>
             </div>
             <div style={value === "Grid" ? grid : list}>
                 {

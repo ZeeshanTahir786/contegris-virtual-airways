@@ -125,9 +125,9 @@ function Header() {
             onClose={handleMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <RouteLink to="/" style={{ textDecoration: "none" }} >
+            {userType !== "Guest" ? <RouteLink to="/" style={{ textDecoration: "none" }} >
                 <MenuItem onClick={handleMenuClose}>Logout Profile</MenuItem>
-            </RouteLink>
+            </RouteLink> : null}
         </Menu>
     );
 

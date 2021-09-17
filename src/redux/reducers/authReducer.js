@@ -14,6 +14,7 @@ const authSlice = createSlice({
             state.email = payload.email;
             state.password = payload.password;
             state.username = payload.username;
+            state.userType = "";
         },
         signUpReducer: (state, { payload }) => {
             state.email = payload.email;
@@ -27,7 +28,7 @@ const authSlice = createSlice({
             state.email = "";
             state.username = "";
             state.password = "";
-            state.userType = ""
+            state.userType = "";
         },
     }
 })
