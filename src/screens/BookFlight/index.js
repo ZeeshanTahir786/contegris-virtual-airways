@@ -1,17 +1,25 @@
 import React, { useState } from 'react';
 import SeatPicker from "react-seat-picker";
-import { DatePicker, Typography } from "antd";
-import { Checkbox } from "antd";
+import { Button, Typography } from "antd";
 import { InputNumber } from "antd";
-import { Select } from "antd";
-import { Tooltip } from "antd";
-import { Modal, Button } from "antd";
+import { useDispatch } from 'react-redux';
+import { totalAdults, totalChild, totalUnderAge, totalYouth } from '../../redux/reducers/flightReducer';
 
 const BookFlight = () => {
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
 
-    function onChange(value) {
-        console.log(`selected ${value}`);
+    function onAudultChange(value) {
+        dispatch(totalAdults(value))
+    }
+    function onYouthChange(value) {
+        dispatch(totalYouth(value))
+    }
+    function onChildChange(value) {
+        dispatch(totalChild(value));
+    }
+    function onUnderAgeChange(value) {
+        dispatch(totalUnderAge(value));
     }
     const addSeatCallback = ({ row, number, id }, addCb) => {
         setLoading(true,
@@ -46,28 +54,28 @@ const BookFlight = () => {
                     placeholder="Adult (18+)..."
                     min={0}
                     max={10}
-                    onChange={onChange}
+                    onChange={onAudultChange}
                 />
                 <InputNumber
                     style={{ width: 200, margin: "10px" }}
                     placeholder="Youth (12-17)..."
                     min={0}
                     max={10}
-                    onChange={onChange}
+                    onChange={onYouthChange}
                 />
                 <InputNumber
                     style={{ width: 200, margin: "10px" }}
                     placeholder="Child (3-11)..."
                     min={0}
                     max={10}
-                    onChange={onChange}
+                    onChange={onChildChange}
                 />
                 <InputNumber
                     style={{ width: 200, margin: "10px" }}
                     placeholder="Infant (Under 2)..."
                     min={0}
                     max={10}
-                    onChange={onChange}
+                    onChange={onUnderAgeChange}
                 />
             </div>
             <Typography>Select Seats</Typography>
