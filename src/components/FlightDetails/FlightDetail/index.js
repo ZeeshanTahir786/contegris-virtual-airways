@@ -102,7 +102,7 @@ const FlightDetail = ({ flightName, airPlaneType, bussinesSeats, economySeats, s
                 >
                     <Fade in={open}>
                         <div className={classes.paper}>
-                            <BookFlight />
+                            <BookFlight handleClose={handleClose} />
                         </div>
                     </Fade>
                 </Modal>

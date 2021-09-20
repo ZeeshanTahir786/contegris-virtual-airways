@@ -5,7 +5,7 @@ import { InputNumber } from "antd";
 import { useDispatch } from 'react-redux';
 import { totalAdults, totalChild, totalUnderAge, totalYouth } from '../../redux/reducers/flightReducer';
 
-const BookFlight = () => {
+const BookFlight = ({ handleClose }) => {
     // const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
@@ -93,7 +93,7 @@ const BookFlight = () => {
                     tooltipProps={{ multiline: true }}
                 />
             </div>
-            <Button type="primary" style={{ marginTop: "50px" }}>Done</Button>
+            <Button onClick={handleClose} type="primary" style={{ marginTop: "50px" }}>Done</Button>
         </div>
     )
 }
