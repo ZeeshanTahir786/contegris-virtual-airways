@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import AuthReducer from "../redux/reducers/authReducer"
+import BookingReducer from '../redux/reducers/BookingReducer';
 import flightReducer from '../redux/reducers/flightReducer';
 
 export const store = configureStore({
@@ -8,5 +8,6 @@ export const store = configureStore({
     // counter: counterReducer,
     auth: AuthReducer,
     flight: flightReducer,
+    booking: BookingReducer,
   },
 });

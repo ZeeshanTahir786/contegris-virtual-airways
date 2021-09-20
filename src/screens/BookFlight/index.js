@@ -21,30 +21,30 @@ const BookFlight = () => {
     function onUnderAgeChange(value) {
         dispatch(totalUnderAge(value));
     }
-    const addSeatCallback = ({ row, number, id }, addCb) => {
-        setLoading(true,
-            async () => {
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                console.log(`Added seat ${number}, row ${row}, id ${id}`);
-                const newTooltip = `tooltip for id-${id} added by callback`;
-                addCb(row, number, id, newTooltip);
-                setLoading(false);
-            }
-        );
+    // const addSeatCallback = ({ row, number, id }, addCb) => {
+    //     setLoading(true,
+    //         async () => {
+    //             await new Promise(resolve => setTimeout(resolve, 1500));
+    //             console.log(`Added seat ${number}, row ${row}, id ${id}`);
+    //             const newTooltip = `tooltip for id-${id} added by callback`;
+    //             addCb(row, number, id, newTooltip);
+    //             setLoading(false);
+    //         }
+    //     );
 
-    };
-    const removeSeatCallback = ({ row, number, id }, removeCb) => {
-        setLoading(true,
-            async () => {
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                console.log(`"Removed seat ${number}, row ${row}, id ${id}"`);
-                const newTooltip = ["A", "B", "C"].includes(row) ? null : "";
-                removeCb(row, number, newTooltip);
-                setLoading(false);
-            }
-        );
+    // };
+    // const removeSeatCallback = ({ row, number, id }, removeCb) => {
+    //     setLoading(true,
+    //         async () => {
+    //             await new Promise(resolve => setTimeout(resolve, 1500));
+    //             console.log(`"Removed seat ${number}, row ${row}, id ${id}"`);
+    //             const newTooltip = ["A", "B", "C"].includes(row) ? null : "";
+    //             removeCb(row, number, newTooltip);
+    //             setLoading(false);
+    //         }
+    //     );
 
-    };
+    // };
     return (
         <div style={{ width: "500px", height: "500px", textAlign: "center", }}>
             <Typography>Total Passengers</Typography>

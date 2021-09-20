@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Banner from './Banner';
 import Cards from './Cards';
 import Header from './Header';
-import Tabss from './Tabs';
 
 
 const HomePage = () => {
@@ -19,7 +18,4 @@ const HomePage = () => {
 
 export default HomePage;
 const Parent = styled.div`
-`;
-const Child = styled.div`
-
 `;
