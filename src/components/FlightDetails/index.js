@@ -1,9 +1,6 @@
 import React, { useState } from 'react'
 import Header from '../../screens/HomePage/Header';
 import FlightBanner from '../FlightBanner';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import FlightDetail from './FlightDetail';
 import { Button } from '@material-ui/core';
 import Image1 from "../../assests/images/banner_toronto.png";
@@ -13,34 +10,10 @@ import Image4 from "../../assests/images/manchester-3.jpg";
 import { useSelector } from 'react-redux';
 
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        // flexGrow: 1,
-        // display: "flex",
-        // flexDirection: "row",
-        // maxWidth: "50px"
-        // gridAutoFlow: "row dense",
-        gridColumnStart: "1",
-        gridColumnEnd: "3",
-    },
-    grid: {
-        display: "grid",
-        gridTemplateColumns: "auto auto auto",
-        marginTop: "500px",
-        marginRight: "20px",
-    },
-    list: {
-        display: "grid",
-        marginTop: "500px",
-        marginRight: "70px",
-        marginLeft: "70px"
-    }
-}));
 const grid = { display: "grid", gridTemplateColumns: "auto auto auto", marginTop: "500px", marginRight: "20px" };
 const list = { display: "grid", marginTop: "500px", marginRight: "50px", marginLeft: "50px" };
 const FlightDetails = () => {
     const [value, setValue] = useState("Grid");
-    const classes = useStyles();
     const listClickHandler = () => {
         setValue("List")
     }
@@ -186,7 +159,7 @@ const flightDet = [
         ],
         airPlaneType: "Malik9T5",
         Stop: "Maladesh",
-        image: Image1,
+        image: Image3,
     },
     {
         id: 9,
@@ -199,6 +172,6 @@ const flightDet = [
         ],
         airPlaneType: "Malik9T5",
         Stop: "Maladesh",
-        image: Image1,
+        image: Image2,
     },
 ]

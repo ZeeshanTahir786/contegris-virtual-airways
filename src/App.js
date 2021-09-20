@@ -6,7 +6,6 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import { AppBar, Button } from '@material-ui/core';
 import HomePage from './screens/HomePage';
 import FlightDetails from './components/FlightDetails';
 

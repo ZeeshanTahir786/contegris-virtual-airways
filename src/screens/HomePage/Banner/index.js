@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import Image1 from "../../../assests/images/E1.jpeg"
 import Image2 from "../../../assests/images/E2.png"
 import Image3 from "../../../assests/images/E3.jpeg"
-import Image4 from "../../../assests/images/signature.jpg"
 
 function Banner() {
     return (

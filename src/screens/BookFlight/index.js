@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SeatPicker from "react-seat-picker";
 import { Button, Typography } from "antd";
 import { InputNumber } from "antd";
@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { totalAdults, totalChild, totalUnderAge, totalYouth } from '../../redux/reducers/flightReducer';
 
 const BookFlight = () => {
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
 
     function onAudultChange(value) {

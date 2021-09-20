@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from "@material-ui/core/Button";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import { useFormik } from 'formik';
@@ -80,16 +79,6 @@ const SignUp = () => {
             alert(JSON.stringify(values, null, 2));
         },
     });
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        // eslint-disable-next-line no-console
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-    };
 
     return (
         <Containers>
