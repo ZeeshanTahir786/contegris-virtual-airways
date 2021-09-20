@@ -31,7 +31,7 @@ const FlightDetails = () => {
             <FlightBanner />
             <div style={{ position: "absolute", bottom: "50px" }}>
                 <Button onClick={GridClickHandler} variant={value === "Grid" ? "contained" : "text"} size="medium" color="primary">Grid View</Button>
-                <Button size="small" variant={value === "List" ? "contained" : "text"} onClick={listClickHandler} size="medium" color="primary">List View</Button>
+                <Button variant={value === "List" ? "contained" : "text"} onClick={listClickHandler} size="medium" color="primary">List View</Button>
             </div>
             <div style={value === "Grid" ? grid : list}>
                 {

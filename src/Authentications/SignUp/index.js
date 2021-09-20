@@ -147,7 +147,6 @@ const SignUp = () => {
                                         required
                                         fullWidth
                                         variant="outlined"
-                                        variant="outlined"
                                         autoComplete="email"
                                     />
                                 </Grid>
